@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+</head>
+<body>
+
+    <h1>Welcome to Employee Management System</h1>
+
+    {% if employees %}
+
+        <table border="1">
+
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Joining Date</th>
+            </tr>
+
+            {% for employee in employees %}
+        
+          
+            <tr>
+                <td>{{ employee.employee_id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.joining_date }}</td>
+            </tr>
+
+    
+            {% endfor %}
+        </table>
+    
+    {% else %}
+
+        <p>No employees found.</p>
+
+    {% endif %}
+
+</body>
+</html>
