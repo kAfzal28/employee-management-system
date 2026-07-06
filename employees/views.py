@@ -35,3 +35,25 @@ def add_employee(request):
         
 
     return render(request, "employees/add_employee.html")
+
+def edit_employee(request, id):
+
+    employee = Employee.objects.get(id=id)
+
+    if request.method == "POST":
+
+        employee.employee_id = request.POST.get("employee_id")
+        employee.name = request.POST.get("name")
+        employee.email = request.POST.get("email")
+        employee.department = request.POST.get("department")
+        employee.joining_date = request.POST.get("joining_date")
+
+        employee.save()
+
+        messages.success(request, "Employee updated successfully.")
+
+
+    return render(request, "employees/edit_employee.html",{
+        "employee": employee
+
+    })

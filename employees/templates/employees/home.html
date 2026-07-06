@@ -5,8 +5,7 @@
     <title>Employee Management System</title>
 
     <style>
-
-        .button{
+        .button {
             background-color: #007bff;
             color: white;
             padding: 10px 18px;
@@ -15,10 +14,9 @@
             font-weight: bold;
         }
 
-        .button-container{
+        .button-container {
             margin-top: 20px;
         }
-
     </style>
 
 </head>
@@ -27,7 +25,7 @@
 
     <h1>Employee Management System</h1>
 
-    
+
     {% if employees %}
 
     <table border="1">
@@ -38,6 +36,7 @@
             <th>Email</th>
             <th>Department</th>
             <th>Joining Date</th>
+            <th>Action</th>
         </tr>
 
         {% for employee in employees %}
@@ -49,6 +48,10 @@
             <td>{{ employee.email }}</td>
             <td>{{ employee.department }}</td>
             <td>{{ employee.joining_date }}</td>
+            
+            <td>
+                <a href="{% url 'edit_employee' employee.id %}">Edit</a>
+            </td>
         </tr>
 
 
@@ -58,13 +61,13 @@
 
     <div class="button-container">
 
-    <a href="{% url 'add_employee' %}" class="button">
-        + Add Employee
-    </a>
+        <a href="{% url 'add_employee' %}" class="button">
+            + Add Employee
+        </a>
 
     </div>
 
-    
+
 
     {% else %}
 
