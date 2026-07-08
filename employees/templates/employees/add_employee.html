@@ -84,15 +84,15 @@
 
 <script>
 
+{% if messages %}
+
 setTimeout(function () {
 
-    const message = document.querySelector(".success-message");
-
-    if (message) {
-        message.style.display = "none";
-    }
+    window.location.href = "{% url 'home' %}";
 
 }, 3000);
+
+{% endif %}
 
 </script>
 

@@ -1,13 +1,28 @@
 from django.shortcuts import render,redirect 
 from .models import Employee
+from django.db.models import Q
 from django.contrib import messages
 
 
 def home(request):
-    employees=Employee.objects.all()
+
+    search = request.GET.get("search")
+
+    if search:
+
+        employees = Employee.objects.filter(
+            Q(employee_id__icontains=search) |
+            Q(name__icontains=search) |
+            Q(email__icontains=search)
+            )
+
+    else:
+
+        employees=Employee.objects.all()
 
     return render(request, "employees/home.html",{
-        "employees": employees
+        "employees": employees,
+        "search": search
     })
 
 def add_employee(request):
@@ -30,8 +45,6 @@ def add_employee(request):
         employee.save()
         
         messages.success(request, "Employee added successfully.")
-        
-        return redirect("add_employee")
         
 
     return render(request, "employees/add_employee.html")

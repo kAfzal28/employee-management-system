@@ -14,6 +14,16 @@
             font-weight: bold;
         }
 
+         .search-button{
+                background-color: #007bff;
+                color: white;
+                padding: 3px 10px;
+                text-decoration: none;
+                border: 1px solid black;
+                border-radius: 2px;
+                cursor: pointer;
+            }
+
         .button-container {
             margin-top: 20px;
         }
@@ -34,6 +44,27 @@
 <body>
 
     <h1>Employee Management System</h1>
+
+    <form method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by Employee ID or Name"
+            value="{{ search|default:'' }}"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+        <a href="{% url 'home' %}" class="search-button">
+            Clear
+        </a>
+
+    </form>
+
+    <br>
 
     {% if messages %}
 
