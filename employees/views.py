@@ -57,3 +57,19 @@ def edit_employee(request, id):
         "employee": employee
 
     })
+
+def delete_employee(request, id):
+
+    employee = Employee.objects.get(id=id)
+
+    if request.method != "POST":
+
+        return render(request, "employees/delete_employee.html", {
+            "employee": employee
+        })
+
+    employee.delete()
+
+    messages.success(request, "Employee deleted successfully.")
+
+    return redirect("home")

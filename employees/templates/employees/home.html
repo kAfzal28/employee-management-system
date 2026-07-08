@@ -17,6 +17,16 @@
         .button-container {
             margin-top: 20px;
         }
+
+        .success-message{
+                background-color: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+                padding: 12px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
     </style>
 
 </head>
@@ -24,6 +34,18 @@
 <body>
 
     <h1>Employee Management System</h1>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="success-message">
+                 {{ message }}
+            </div>
+
+         {% endfor %}
+
+    {% endif %}
 
 
     {% if employees %}
@@ -48,9 +70,14 @@
             <td>{{ employee.email }}</td>
             <td>{{ employee.department }}</td>
             <td>{{ employee.joining_date }}</td>
-            
+
             <td>
                 <a href="{% url 'edit_employee' employee.id %}">Edit</a>
+
+                <br>
+
+                <a href="{% url 'delete_employee' employee.id %}">Delete</a>
+
             </td>
         </tr>
 
@@ -74,6 +101,22 @@
     <p>No employees found.</p>
 
     {% endif %}
+
+<script>
+
+setTimeout(function () {
+
+    const message = document.querySelector(".success-message");
+
+    if (message) {
+
+        message.style.display = "none";
+
+    }
+
+}, 3000);
+
+</script>
 
 </body>
 
