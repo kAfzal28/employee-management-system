@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect 
-from .models import Employee
+from .models import Employee,Department
 from django.db.models import Q
 from django.contrib import messages
 
@@ -86,3 +86,27 @@ def delete_employee(request, id):
     messages.success(request, "Employee deleted successfully.")
 
     return redirect("home")
+
+def department_list(request):
+
+    departments = Department.objects.all()
+
+    return render(request, "employees/department_list.html", {
+        "departments": departments
+    })
+
+def add_department(request):
+
+    if request.method == "POST":
+
+        name = request.POST.get("name")
+
+        department = Department(
+            name=name
+        )
+
+        department.save()
+
+        messages.success(request, "Department added successfully.")
+
+    return render(request, "employees/add_department.html")

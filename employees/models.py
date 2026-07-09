@@ -7,3 +7,6 @@ class Employee(models.Model):
     email = models.EmailField()
     department = models.CharField(max_length=50)
     joining_date = models.DateField()
+
+class Department(models.Model):
+    name = models.CharField(max_length=100)
