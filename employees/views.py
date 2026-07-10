@@ -110,3 +110,35 @@ def add_department(request):
         messages.success(request, "Department added successfully.")
 
     return render(request, "employees/add_department.html")
+
+def edit_department(request, id):
+
+    department = Department.objects.get(id=id)
+
+    if request.method == "POST":
+
+        department.name = request.POST.get("name")
+
+        department.save()
+
+        messages.success(request, "Department updated successfully.")
+
+    return render(request, "employees/edit_department.html",{
+        "department": department
+    })
+    
+def delete_department(request, id):
+
+    department = Department.objects.get(id=id)
+
+    if request.method != "POST":
+
+        return render(request, "employees/delete_department.html", {
+            "department": department
+        })
+
+    department.delete()
+
+    messages.success(request, "Department deleted successfully.")
+
+    return redirect("department_list")
