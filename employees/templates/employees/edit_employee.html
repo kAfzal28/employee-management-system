@@ -71,7 +71,22 @@
         <br><br>
 
         <label>Department:</label>
-        <input type="text" name="department" value="{{ employee.department }}">
+        <select name="department">
+
+            {% for department in departments %}
+
+                <option
+                    value="{{ department.id }}"
+                    {% if department.id == employee.department.id %}
+                        selected
+                    {% endif %}
+                >
+                    {{ department.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
 
         <br><br>
 

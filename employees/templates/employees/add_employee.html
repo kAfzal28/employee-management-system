@@ -69,7 +69,17 @@
         <br><br>
 
         <label>Department:</label>
-        <input type="text" name="department">
+        <select name="department">
+
+            {% for department in departments %}
+
+                <option value="{{ department.id }}">
+                    {{ department.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
 
         <br><br>
 

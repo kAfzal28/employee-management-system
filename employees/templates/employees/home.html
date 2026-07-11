@@ -117,6 +117,12 @@
 
     </table>
 
+    {% else %}
+
+    <p>No employees found.</p>
+
+    {% endif %}
+
     <div class="button-container">
 
         <a href="{% url 'add_employee' %}" class="button">
@@ -124,14 +130,6 @@
         </a>
 
     </div>
-
-
-
-    {% else %}
-
-    <p>No employees found.</p>
-
-    {% endif %}
 
 <script>
 
