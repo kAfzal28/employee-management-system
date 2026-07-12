@@ -49,7 +49,7 @@
 
     {% endif %}
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
 
         {% csrf_token %}
 
@@ -85,6 +85,11 @@
 
         <label>Joining Date:</label>
         <input type="date" name="joining_date">
+
+        <br><br>
+
+        <label>Photo:</label>
+        <input type="file" name="photo">
 
         <br><br>
 

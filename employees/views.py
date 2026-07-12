@@ -37,6 +37,7 @@ def add_employee(request):
             id=request.POST.get("department")
         )
         joining_date = request.POST.get("joining_date")
+        photo = request.FILES.get("photo")
         
         employee = Employee(
         employee_id=employee_id,
@@ -44,6 +45,7 @@ def add_employee(request):
         email=email,
         department=department,
         joining_date=joining_date,
+        photo=photo,
     )
         
         employee.save()
